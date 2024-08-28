@@ -11,7 +11,7 @@ const category = [
     "Data Science",
     "Graphic Designer",
     "FullStack Developer"
-]
+];
 
 const CategoryCarousel = () => {
     const dispatch = useDispatch();
@@ -19,25 +19,29 @@ const CategoryCarousel = () => {
     const searchJobHandler = (query) => {
         dispatch(setSearchedQuery(query));
         navigate("/browse");
-    }
+    };
 
     return (
-        <div>
-            <Carousel className="w-full max-w-xl mx-auto my-20">
-                <CarouselContent>
-                    {
-                        category.map((cat, index) => (
-                            <CarouselItem className="md:basis-1/2 lg-basis-1/3">
-                                <Button onClick={()=>searchJobHandler(cat)} variant="outline" className="rounded-full">{cat}</Button>
-                            </CarouselItem>
-                        ))
-                    }
+        <div className="bg-gray-900 py-6">
+            <Carousel className="w-full max-w-xl mx-auto">
+                <CarouselContent className="bg-gray-900 rounded-lg p-4">
+                    {category.map((cat, index) => (
+                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-2">
+                            <Button
+                                onClick={() => searchJobHandler(cat)}
+                                variant="outline"
+                                className="w-full rounded-full bg-gray-800 text-white border-gray-600 hover:bg-gray-700"
+                            >
+                                {cat}
+                            </Button>
+                        </CarouselItem>
+                    ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="bg-gray-900" />
+                <CarouselNext className="bg-gray-900" />
             </Carousel>
         </div>
-    )
-}
+    );
+};
 
-export default CategoryCarousel
+export default CategoryCarousel;
