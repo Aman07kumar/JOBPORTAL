@@ -1,3 +1,4 @@
+// Update the API URL in your constants
 export const USER_API_END_POINT = "https://jobportal-backend-p8da.onrender.com/api/v1/user";
 export const JOB_API_END_POINT = "https://jobportal-backend-p8da.onrender.com/api/v1/job";
 export const APPLICATION_API_END_POINT = "https://jobportal-backend-p8da.onrender.com/api/v1/application";
