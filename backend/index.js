@@ -20,7 +20,7 @@ app.use(cookieParser());
 // CORS configuration
 const allowedOrigins = [
     'http://localhost:5173', // Local development
-    
+    'https://jobportal-frontend-qi3h.onrender.com' // Production URL
 ];
 
 const corsOptions = {
@@ -47,4 +47,4 @@ app.use("/api/v1/application", applicationRoute);
 app.listen(PORT, () => {
     connectDB();
     console.log(`Server running at port ${PORT}`);
-});
+})
