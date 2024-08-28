@@ -20,46 +20,48 @@ const CompaniesTable = () => {
     }, [companies, searchCompanyByText]);
 
     return (
-        <Table>
-            <TableCaption>A list of your recent registered companies</TableCaption>
-            <TableHeader>
-                <TableRow>
-                    <TableHead>Logo</TableHead>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead className="text-right">Action</TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                {filterCompany.map((company) => (
-                    <TableRow key={company._id}>
-                        <TableCell>
-                            <Avatar>
-                                <AvatarImage src={company.logo} alt={`${company.name} Logo`} />
-                            </Avatar>
-                        </TableCell>
-                        <TableCell>{company.name}</TableCell>
-                        <TableCell>{new Date(company.createdAt).toLocaleDateString()}</TableCell>
-                        <TableCell className="text-right">
-                            <Popover>
-                                <PopoverTrigger>
-                                    <MoreHorizontal className="cursor-pointer" />
-                                </PopoverTrigger>
-                                <PopoverContent className="w-32">
-                                    <div
-                                        onClick={() => navigate(`/admin/companies/${company._id}`)}
-                                        className="flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-200"
-                                    >
-                                        <Edit2 className="w-4 h-4" />
-                                        <span>Edit</span>
-                                    </div>
-                                </PopoverContent>
-                            </Popover>
-                        </TableCell>
+        <div className="overflow-x-auto p-4">
+            <Table className="min-w-full">
+                <TableCaption>A list of your recent registered companies</TableCaption>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead>Logo</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Date</TableHead>
+                        <TableHead className="text-right">Action</TableHead>
                     </TableRow>
-                ))}
-            </TableBody>
-        </Table>
+                </TableHeader>
+                <TableBody>
+                    {filterCompany.map((company) => (
+                        <TableRow key={company._id}>
+                            <TableCell>
+                                <Avatar>
+                                    <AvatarImage src={company.logo} alt={`${company.name} Logo`} />
+                                </Avatar>
+                            </TableCell>
+                            <TableCell>{company.name}</TableCell>
+                            <TableCell>{new Date(company.createdAt).toLocaleDateString()}</TableCell>
+                            <TableCell className="text-right">
+                                <Popover>
+                                    <PopoverTrigger>
+                                        <MoreHorizontal className="cursor-pointer" />
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-32 md:w-40">
+                                        <div
+                                            onClick={() => navigate(`/admin/companies/${company._id}`)}
+                                            className="flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-200 rounded-md"
+                                        >
+                                            <Edit2 className="w-4 h-4" />
+                                            <span>Edit</span>
+                                        </div>
+                                    </PopoverContent>
+                                </Popover>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </div>
     );
 };
 

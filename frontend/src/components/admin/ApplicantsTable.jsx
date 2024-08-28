@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -17,8 +17,10 @@ const shortlistingStatus = ["Accepted", "Rejected"];
 
 const ApplicantsTable = () => {
   const { applicants } = useSelector((store) => store.application);
+  const [loading, setLoading] = useState(false);
 
   const statusHandler = async (status, id) => {
+    setLoading(true);
     try {
       const res = await axios.post(
         `${APPLICATION_API_END_POINT}/status/${id}/update`,
@@ -31,6 +33,8 @@ const ApplicantsTable = () => {
     } catch (error) {
       const errorMessage = error.response?.data?.message || "An error occurred";
       toast.error(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -64,7 +68,7 @@ const ApplicantsTable = () => {
                       rel="noopener noreferrer"
                       aria-label={`Resume of ${item?.applicant?.fullname}`}
                     >
-                      {item?.applicant?.profile?.resumeOriginalName}
+                      {item?.applicant?.profile?.resumeOriginalName || "Download Resume"}
                     </a>
                   ) : (
                     <span>N/A</span>
@@ -77,17 +81,19 @@ const ApplicantsTable = () => {
                   <div className="flex justify-end gap-2">
                     <button
                       onClick={() => statusHandler("Accepted", item._id)}
-                      className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
+                      className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 disabled:bg-gray-300"
                       aria-label={`Accept ${item?.applicant?.fullname}`}
+                      disabled={loading}
                     >
-                      Accept
+                      {loading ? "Processing..." : "Accept"}
                     </button>
                     <button
                       onClick={() => statusHandler("Rejected", item._id)}
-                      className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
+                      className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 disabled:bg-gray-300"
                       aria-label={`Reject ${item?.applicant?.fullname}`}
+                      disabled={loading}
                     >
-                      Reject
+                      {loading ? "Processing..." : "Reject"}
                     </button>
                   </div>
                 </TableCell>

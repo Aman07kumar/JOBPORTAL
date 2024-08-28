@@ -23,8 +23,8 @@ const AdminJobsTable = () => {
     }, [allAdminJobs, searchJobByText]);
 
     return (
-        <div className='p-4'>
-            <Table className='border border-gray-300'>
+        <div className='p-4 overflow-x-auto'>
+            <Table className='border border-gray-300 min-w-full'>
                 <TableCaption>A list of your recently posted jobs</TableCaption>
                 <TableHeader>
                     <TableRow>
@@ -44,16 +44,27 @@ const AdminJobsTable = () => {
                                 <div className='flex justify-end items-center gap-2'>
                                     <Popover>
                                         <PopoverTrigger>
-                                            <button className='p-2 rounded-md hover:bg-gray-200'>
+                                            <button
+                                                className='p-2 rounded-md hover:bg-gray-200'
+                                                aria-label={`More options for ${job.title}`}
+                                            >
                                                 <Edit2 className='w-5 h-5' />
                                             </button>
                                         </PopoverTrigger>
                                         <PopoverContent className='w-32 p-2'>
-                                            <div onClick={() => navigate(`/admin/companies/${job._id}`)} className='flex items-center gap-2 cursor-pointer hover:bg-gray-100 p-1 rounded-md'>
+                                            <div
+                                                onClick={() => navigate(`/admin/companies/${job._id}`)}
+                                                className='flex items-center gap-2 cursor-pointer hover:bg-gray-100 p-2 rounded-md'
+                                                aria-label={`Edit job ${job.title}`}
+                                            >
                                                 <Edit2 className='w-4' />
                                                 <span>Edit</span>
                                             </div>
-                                            <div onClick={() => navigate(`/admin/jobs/${job._id}/applicants`)} className='flex items-center gap-2 cursor-pointer hover:bg-gray-100 p-1 rounded-md mt-2'>
+                                            <div
+                                                onClick={() => navigate(`/admin/jobs/${job._id}/applicants`)}
+                                                className='flex items-center gap-2 cursor-pointer hover:bg-gray-100 p-2 rounded-md mt-2'
+                                                aria-label={`View applicants for job ${job.title}`}
+                                            >
                                                 <Eye className='w-4' />
                                                 <span>Applicants</span>
                                             </div>

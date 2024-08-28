@@ -77,11 +77,11 @@ const CompanySetup = () => {
     };
 
     return (
-        <div>
+        <div className='min-h-screen bg-gray-100'>
             <Navbar />
-            <div className='max-w-4xl mx-auto my-10'>
-                <form onSubmit={submitHandler}>
-                    <div className='flex items-center gap-4 p-6'>
+            <div className='container mx-auto px-4 py-8 sm:px-6 md:px-8'>
+                <form onSubmit={submitHandler} className='bg-white shadow-md rounded-lg p-6'>
+                    <div className='flex items-center gap-4 mb-6'>
                         <Button
                             onClick={() => navigate('/admin/companies')}
                             variant='outline'
@@ -90,9 +90,9 @@ const CompanySetup = () => {
                             <ArrowLeft />
                             <span>Back</span>
                         </Button>
-                        <h1 className='text-2xl font-semibold'>Company Setup</h1>
+                        <h1 className='text-xl sm:text-2xl font-semibold'>Company Setup</h1>
                     </div>
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-6 p-4'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
                         <div>
                             <Label htmlFor='name'>Company Name</Label>
                             <Input
@@ -102,6 +102,7 @@ const CompanySetup = () => {
                                 value={input.name}
                                 onChange={changeEventHandler}
                                 required
+                                className='w-full'
                             />
                         </div>
                         <div>
@@ -113,6 +114,7 @@ const CompanySetup = () => {
                                 value={input.description}
                                 onChange={changeEventHandler}
                                 required
+                                className='w-full'
                             />
                         </div>
                         <div>
@@ -124,6 +126,7 @@ const CompanySetup = () => {
                                 value={input.website}
                                 onChange={changeEventHandler}
                                 required
+                                className='w-full'
                             />
                         </div>
                         <div>
@@ -135,21 +138,23 @@ const CompanySetup = () => {
                                 value={input.location}
                                 onChange={changeEventHandler}
                                 required
+                                className='w-full'
                             />
                         </div>
-                        <div>
+                        <div className='col-span-2'>
                             <Label htmlFor='file'>Logo</Label>
                             <Input
                                 id='file'
                                 type='file'
                                 accept='image/*'
                                 onChange={changeFileHandler}
+                                className='w-full'
                             />
                         </div>
                     </div>
                     <Button
                         type='submit'
-                        className='w-full my-6'
+                        className='w-full mt-6 bg-dark-navy-blue hover:bg-darker-navy-blue text-white'
                         disabled={loading}
                     >
                         {loading ? (

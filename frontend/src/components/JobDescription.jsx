@@ -49,32 +49,40 @@ const JobDescription = () => {
     }, [jobId, dispatch, user?._id]);
 
     return (
-        <div className='max-w-7xl mx-auto my-10 p-4 sm:p-6'>
-            <div className='flex flex-col sm:flex-row items-start justify-between'>
-                <div>
-                    <h1 className='font-bold text-2xl sm:text-3xl'>{singleJob?.title}</h1>
-                    <div className='flex flex-wrap items-center gap-2 mt-4'>
-                        <Badge className='text-blue-700 font-bold' variant="ghost">{singleJob?.position} Positions</Badge>
-                        <Badge className='text-[#F83002] font-bold' variant="ghost">{singleJob?.jobType}</Badge>
-                        <Badge className='text-[#7209b7] font-bold' variant="ghost">{singleJob?.salary}LPA</Badge>
+        <div className='max-w-full mx-auto my-4 p-4 sm:p-6'>
+            <div className='flex flex-col sm:flex-row items-start justify-between mb-4'>
+                <div className='flex flex-col'>
+                    <h1 className='text-xl sm:text-2xl font-bold'>{singleJob?.title}</h1>
+                    <div className='flex flex-wrap items-center gap-2 mt-2'>
+                        <Badge className='text-blue-700 font-bold text-xs sm:text-sm' variant="ghost">{singleJob?.position} Positions</Badge>
+                        <Badge className='text-[#F83002] font-bold text-xs sm:text-sm' variant="ghost">{singleJob?.jobType}</Badge>
+                        <Badge className='text-[#7209b7] font-bold text-xs sm:text-sm' variant="ghost">{singleJob?.salary} LPA</Badge>
                     </div>
                 </div>
                 <Button
                     onClick={isApplied ? null : applyJobHandler}
                     disabled={isApplied}
-                    className={`mt-4 sm:mt-0 rounded-lg ${isApplied ? 'bg-gray-600 cursor-not-allowed' : 'bg-[#7209b7] hover:bg-[#5f32ad]'}`}>
+                    className={`mt-4 sm:mt-0 rounded-lg py-2 px-4 text-white ${isApplied ? 'bg-gray-600 cursor-not-allowed' : 'bg-[#7209b7] hover:bg-[#5f32ad]'}`}
+                >
                     {isApplied ? 'Already Applied' : 'Apply Now'}
                 </Button>
             </div>
-            <h1 className='border-b-2 border-b-gray-300 font-medium py-4 text-xl'>Job Description</h1>
-            <div className='space-y-4'>
-                <h1 className='font-bold text-lg'>Role: <span className='font-normal text-gray-800'>{singleJob?.title}</span></h1>
-                <h1 className='font-bold text-lg'>Location: <span className='font-normal text-gray-800'>{singleJob?.location}</span></h1>
-                <h1 className='font-bold text-lg'>Description: <span className='font-normal text-gray-800'>{singleJob?.description}</span></h1>
-                <h1 className='font-bold text-lg'>Experience: <span className='font-normal text-gray-800'>{singleJob?.experience} yrs</span></h1>
-                <h1 className='font-bold text-lg'>Salary: <span className='font-normal text-gray-800'>{singleJob?.salary}LPA</span></h1>
-                <h1 className='font-bold text-lg'>Total Applicants: <span className='font-normal text-gray-800'>{singleJob?.applications?.length}</span></h1>
-                <h1 className='font-bold text-lg'>Posted Date: <span className='font-normal text-gray-800'>{singleJob?.createdAt.split("T")[0]}</span></h1>
+            <h1 className='border-b-2 border-gray-300 font-medium py-2 text-lg sm:text-xl'>Job Description</h1>
+            <div className='space-y-2 sm:space-y-4'>
+                <h2 className='text-base sm:text-lg font-bold'>Role:</h2>
+                <p className='text-gray-800'>{singleJob?.title}</p>
+                <h2 className='text-base sm:text-lg font-bold'>Location:</h2>
+                <p className='text-gray-800'>{singleJob?.location}</p>
+                <h2 className='text-base sm:text-lg font-bold'>Description:</h2>
+                <p className='text-gray-800'>{singleJob?.description}</p>
+                <h2 className='text-base sm:text-lg font-bold'>Experience:</h2>
+                <p className='text-gray-800'>{singleJob?.experience} yrs</p>
+                <h2 className='text-base sm:text-lg font-bold'>Salary:</h2>
+                <p className='text-gray-800'>{singleJob?.salary} LPA</p>
+                <h2 className='text-base sm:text-lg font-bold'>Total Applicants:</h2>
+                <p className='text-gray-800'>{singleJob?.applications?.length}</p>
+                <h2 className='text-base sm:text-lg font-bold'>Posted Date:</h2>
+                <p className='text-gray-800'>{singleJob?.createdAt.split("T")[0]}</p>
             </div>
         </div>
     );

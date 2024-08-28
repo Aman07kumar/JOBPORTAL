@@ -70,42 +70,45 @@ const Signup = () => {
     }, [user, navigate]);
 
     return (
-        <div>
+        <div className='bg-gray-900 min-h-screen text-white'>
             <Navbar />
-            <div className='flex items-center justify-center max-w-7xl mx-auto'>
-                <form onSubmit={submitHandler} className='w-1/2 border border-gray-200 rounded-md p-4 my-10'>
-                    <h1 className='font-bold text-xl mb-5'>Sign Up</h1>
-                    <div className='my-2'>
+            <div className='flex items-center justify-center max-w-screen-sm mx-auto p-4'>
+                <form onSubmit={submitHandler} className='w-full border border-gray-700 rounded-md p-8 bg-gray-800'>
+                    <h1 className='font-bold text-2xl mb-6'>Sign Up</h1>
+                    <div className='mb-4'>
                         <Label>Full Name</Label>
                         <Input
                             type="text"
                             value={input.fullname}
                             name="fullname"
                             onChange={changeEventHandler}
-                            placeholder="aman kumar"
+                            placeholder="Aman Kumar"
+                            className="bg-gray-700 text-white placeholder-gray-400"
                         />
                     </div>
-                    <div className='my-2'>
+                    <div className='mb-4'>
                         <Label>Email</Label>
                         <Input
                             type="email"
                             value={input.email}
                             name="email"
                             onChange={changeEventHandler}
-                            placeholder="aman@gmail.com"
+                            placeholder="aman.kumar@example.com"
+                            className="bg-gray-700 text-white placeholder-gray-400"
                         />
                     </div>
-                    <div className='my-2'>
+                    <div className='mb-4'>
                         <Label>Phone Number</Label>
                         <Input
                             type="text"
                             value={input.phoneNumber}
                             name="phoneNumber"
                             onChange={changeEventHandler}
-                            placeholder="8080808080"
+                            placeholder="123-456-7890"
+                            className="bg-gray-700 text-white placeholder-gray-400"
                         />
                     </div>
-                    <div className='my-2'>
+                    <div className='mb-4'>
                         <Label>Password</Label>
                         <Input
                             type="password"
@@ -113,10 +116,11 @@ const Signup = () => {
                             name="password"
                             onChange={changeEventHandler}
                             placeholder="********"
+                            className="bg-gray-700 text-white placeholder-gray-400"
                         />
                     </div>
-                    <div className='flex items-center justify-between'>
-                        <RadioGroup className="flex items-center gap-4 my-5">
+                    <div className='flex items-center justify-between mb-6'>
+                        <RadioGroup className="flex items-center gap-4">
                             <div className="flex items-center space-x-2">
                                 <Input
                                     type="radio"
@@ -152,14 +156,14 @@ const Signup = () => {
                     </div>
                     {
                         loading
-                            ? <Button className="w-full my-4 text-yellow-500 border-yellow-500">
+                            ? <Button className="w-full my-4 bg-yellow-500 border-yellow-500 text-gray-900">
                                 <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait
                             </Button>
-                            : <Button type="submit" className="w-full my-4 text-yellow-500 border-yellow-500">
+                            : <Button type="submit" className="w-full my-4 bg-yellow-500 border-yellow-500 text-gray-900">
                                 Signup
                             </Button>
                     }
-                    <span className='text-sm'>Already have an account? <Link to="/login" className='text-blue-600'>Login</Link></span>
+                    <span className='text-sm'>Already have an account? <Link to="/login" className='text-blue-400'>Login</Link></span>
                 </form>
             </div>
         </div>
