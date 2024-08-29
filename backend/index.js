@@ -19,7 +19,7 @@ app.use(cookieParser());
 
 // Correct CORS configuration
 const corsOptions = {
-    origin: 'https://jobportal-frontend-wp2p.onrender.com', // Frontend URL without trailing slash
+    origin: 'https://66d0598929e790f57210bf5e--astonishing-brioche-986f01.netlify.app/', 
     credentials: true,
     optionsSuccessStatus: 200, // For legacy browser support
 }
