@@ -19,8 +19,9 @@ app.use(cookieParser());
 
 // Correct CORS configuration
 const corsOptions = {
-    origin: 'https://jobportal-frontend-wp2p.onrender.com',  // Frontend URL
-    credentials: true
+    origin: 'https://jobportal-frontend-wp2p.onrender.com',  // Frontend URL without trailing slash
+    credentials: true,
+    optionsSuccessStatus: 200
 }
 
 app.use(cors(corsOptions));
