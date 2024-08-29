@@ -8,31 +8,40 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 
-dotenv.config({});
+dotenv.config();
 
 const app = express();
 
-// middleware
+// Middleware
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Correct CORS configuration
 const corsOptions = {
-    origin: 'https://jobportal-frontend-wp2p.onrender.com',  // Frontend URL without trailing slash
+    origin: 'https://jobportal-frontend-wp2p.onrender.com', // Frontend URL without trailing slash
     credentials: true,
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 200, // For legacy browser support
 }
 
 app.use(cors(corsOptions));
 
-const PORT = process.env.PORT || 3000;
-
-// api's
+// API Routes
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
+
+// Error Handling Middleware (Optional but recommended)
+app.use((err, req, res, next) => {
+    if (err instanceof cors.CorsError) {
+        res.status(401).json({ success: false, message: 'CORS Error: ' + err.message });
+    } else {
+        res.status(500).json({ success: false, message: err.message });
+    }
+});
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     connectDB();
